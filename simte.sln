@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{12787611-C8E5-45F6-9BFF-1CC5A1CA319E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2DAEB5F7-9E9E-4A9A-BA44-86B4A4C3F942}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "simte", "src\simte\simte.csproj", "{A2780889-EF78-4A64-9005-FF971169A56E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "simte.EPPlus", "src\simte.EPPlus\simte.EPPlus.csproj", "{322C7B2C-8CC0-4334-AA45-4261BF4D338D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TablePositionFinder.Test", "test\TablePositionFinder.Test\TablePositionFinder.Test.csproj", "{61B4252F-E5EB-4084-A614-E8C6EFE6282D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2780889-EF78-4A64-9005-FF971169A56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2780889-EF78-4A64-9005-FF971169A56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2780889-EF78-4A64-9005-FF971169A56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2780889-EF78-4A64-9005-FF971169A56E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322C7B2C-8CC0-4334-AA45-4261BF4D338D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322C7B2C-8CC0-4334-AA45-4261BF4D338D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322C7B2C-8CC0-4334-AA45-4261BF4D338D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322C7B2C-8CC0-4334-AA45-4261BF4D338D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B4252F-E5EB-4084-A614-E8C6EFE6282D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B4252F-E5EB-4084-A614-E8C6EFE6282D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B4252F-E5EB-4084-A614-E8C6EFE6282D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B4252F-E5EB-4084-A614-E8C6EFE6282D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A2780889-EF78-4A64-9005-FF971169A56E} = {12787611-C8E5-45F6-9BFF-1CC5A1CA319E}
+		{322C7B2C-8CC0-4334-AA45-4261BF4D338D} = {12787611-C8E5-45F6-9BFF-1CC5A1CA319E}
+		{61B4252F-E5EB-4084-A614-E8C6EFE6282D} = {2DAEB5F7-9E9E-4A9A-BA44-86B4A4C3F942}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FAFE3BE8-64F2-4D65-A117-01A81161A514}
+	EndGlobalSection
+EndGlobal
