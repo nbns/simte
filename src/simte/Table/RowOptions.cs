@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace simte.Table
 {
@@ -8,8 +7,5 @@ namespace simte.Table
         public double? Height { get; set; } = null;
         public Color TextColor { get; set; } = Color.Black;
         public Color BackgroundColor { get; set; } = Color.White;
-
-        //public Dictionary<int, double> HeightByIndex { get; }
-        //    = new Dictionary<int, double>();
     }
 }
