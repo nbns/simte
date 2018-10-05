@@ -1,4 +1,6 @@
-﻿namespace simte.Table
+﻿using System.Collections.Generic;
+
+namespace simte.Table
 {
     public class TableOptions
     {
@@ -8,5 +10,7 @@
 
         public Position? FreezePane { get; set; }
         public bool WrapText { get; set; }
+
+        public Dictionary<int, double> RowHeightMap => new Dictionary<int, double>();
     }
 }

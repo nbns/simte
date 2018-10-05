@@ -2,6 +2,7 @@
 using simte.Table;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace simte.EPPlus.Table
 {
@@ -13,7 +14,7 @@ namespace simte.EPPlus.Table
         public TableOptions Options { get; }
 
         // ctor
-        public TableBuilder(WorksheetFactory worksheetFactory , TableOptions options)
+        public TableBuilder(WorksheetFactory worksheetFactory, TableOptions options)
         {
             _worksheetFactory = worksheetFactory ?? throw new ArgumentNullException(nameof(worksheetFactory));
             Options = options ?? throw new ArgumentNullException(nameof(options));
@@ -22,14 +23,24 @@ namespace simte.EPPlus.Table
             prepare();
         }
 
-        internal void prepare()
+        private void prepare()
         {
             if (Options.FreezePane.HasValue)
             {
                 _worksheetFactory.ws.View.FreezePanes(
-                    Options.FreezePane.Value.Row, 
+                    Options.FreezePane.Value.Row,
                     Options.FreezePane.Value.Col
                 );
+
+                // set row height
+                if (Options.RowHeightMap.Any())
+                {
+                    var ws = _worksheetFactory.ws;
+                    foreach (var pair in Options.RowHeightMap)
+                    {
+                        ws.Row(pair.Key).Height = pair.Value;
+                    }
+                }
             }
         }
 

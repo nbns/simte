@@ -43,14 +43,6 @@ namespace simte.EPPlus.Table
             currentRow.Style.Font.Color.SetColor(options.TextColor);
             currentRow.Style.Fill.BackgroundColor.SetColor(options.BackgroundColor);
 
-            if (options.HeightByIndex.Any())
-            {
-                foreach (var pair in options.HeightByIndex)
-                {
-                    _ws.Row(pair.Key).Height = pair.Value;
-                }
-            }
-
             return this;
         }
 

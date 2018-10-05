@@ -9,7 +9,7 @@ namespace simte.Table
         public Color TextColor { get; set; } = Color.Black;
         public Color BackgroundColor { get; set; } = Color.White;
 
-        public Dictionary<int, double> HeightByIndex { get; }
-            = new Dictionary<int, double>();
+        //public Dictionary<int, double> HeightByIndex { get; }
+        //    = new Dictionary<int, double>();
     }
 }
