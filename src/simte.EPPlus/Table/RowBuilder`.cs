@@ -69,12 +69,11 @@ namespace simte.EPPlus.Table
                         column.ActionOptions?.Invoke(columnOptionsBuilder);
                         ColumnOptions options = columnOptionsBuilder;
 
-                        // set color if present fucntion
+                        // set color if present function
                         options.TextColor = columnOptionsBuilder.TextColorFunc?.Invoke(item) ?? options.TextColor;
                         options.BackgroundColor = columnOptionsBuilder.BackgroundColorFunc?.Invoke(item) ?? options.BackgroundColor;
 
-                        var pos = _tablePositionFinder.GetNewPosition(indexColumn, options.Colspan, options.Rowspan)
-                            ?? throw new Exception($"Cells cross in ${indexColumn} column");
+                        var pos = _tablePositionFinder.GetNewPosition(indexColumn, options.Colspan, options.Rowspan);
 
                         setExcelRange(column.SelectorFunc?.Invoke(item) ?? "", pos, options);
                         indexColumn = indexColumn + options.Colspan;

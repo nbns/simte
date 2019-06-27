@@ -57,8 +57,7 @@ namespace simte.EPPlus.Table
 
         internal Position GetPositionForCurrentColumn(int colspan, int rowspan)
         {
-            return _tablePositionFinder.GetNewPosition(_currentColumn, colspan, rowspan)
-                            ?? throw new Exception($"Cells cross in {_currentColumn} column");
+            return _tablePositionFinder.GetNewPosition(_currentColumn, colspan, rowspan);
         }
 
         internal void NextColumn(int colspan)

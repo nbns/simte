@@ -24,7 +24,7 @@ namespace simte.SeedWork
                 : _topLeft.Col;
         }
 
-        public Position? GetNewPosition(int column, int colspan = 1, int rowspan = 1)
+        public Position GetNewPosition(int column, int colspan = 1, int rowspan = 1)
         {
             if (column < 1) throw new ArgumentNullException("Column is less than 1");
 
@@ -42,12 +42,13 @@ namespace simte.SeedWork
             {
                 if (row != _indexOfRows[index])
                 {
-                    // not appropriate
-                    return null;
+                    // not appropriate row, column
+                    throw new Exception($"The intersection of the cells in row={row}, column={column} (rowspan={rowspan}, colspan={colspan}");
                 }
 
                 _indexOfRows[index] += rowspan;
             }
+
             return new Position(_topLeft.Row + row, column);
         }
 
@@ -73,6 +74,5 @@ namespace simte.SeedWork
 
             return column;
         }
-
     }
 }
