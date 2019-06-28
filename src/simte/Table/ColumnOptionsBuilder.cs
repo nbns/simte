@@ -25,12 +25,14 @@ namespace simte.Table
         public ColumnOptionsBuilder BackgroundColor(Color color) => WithOptions(opt => opt.BackgroundColor = color);
         public ColumnOptionsBuilder Rowspan(int value) => WithOptions(opt => opt.Rowspan = value);
         public ColumnOptionsBuilder Colspan(int value) => WithOptions(opt => opt.Colspan = value);
-        public ColumnOptionsBuilder HorzintalAligment(HorizontalAlignment aligment) => WithOptions(opt => opt.HorizontalAligment = aligment);
-        public ColumnOptionsBuilder VerticalAligment(VerticalAlignment aligment) => WithOptions(opt => opt.VerticalAligment = aligment);
+        public ColumnOptionsBuilder HorizontalAlignment(HorizontalAlignment alignment) => WithOptions(opt => opt.HorizontalAlignment = alignment);
+        public ColumnOptionsBuilder VerticalAlignment(VerticalAlignment alignment) => WithOptions(opt => opt.VerticalAlignment = alignment);
         public ColumnOptionsBuilder NumberFormat(string format) => WithOptions(opt => opt.NumberFormat = format);
         public ColumnOptionsBuilder Width(double width) => WithOptions(opt => opt.Width = width);
 
-        //public ColumnOptionsBuilder Sum((int row, int col) start, (int row, int col) end) => this;
+        public ColumnOptionsBuilder FontSize(int size) => WithOptions(opt => opt.FontSize = size);
+        public ColumnOptionsBuilder FontBold(bool value) => WithOptions(opt => opt.FontBold = value);
+        
         public ColumnOptionsBuilder Formula(string formula) => WithOptions(opt => opt.Formula = formula);
 
         public static implicit operator ColumnOptions(ColumnOptionsBuilder columnOptionsBuilder)
