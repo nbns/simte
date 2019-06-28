@@ -1,4 +1,6 @@
-﻿using simte.Common;
+﻿using System;
+using simte.Common;
+using simte.RichText;
 using simte.Table;
 
 namespace simte
@@ -6,5 +8,7 @@ namespace simte
     public interface IWorksheetFactory : IAttachable<IExcelPackage>
     {
         ITableBuilder Table(TableOptions options);
+        IRichTextBuilder RichText(Position pos);
+        IWorksheetFactory Text(string text, Position pos, Action<ColumnOptionsBuilder> action = null, double? rowHeight = null);
     }
 }

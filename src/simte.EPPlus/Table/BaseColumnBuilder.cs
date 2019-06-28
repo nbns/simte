@@ -31,8 +31,8 @@ namespace simte.EPPlus.Table
                     _ws.Column(pos.Col).Width = options.Width.Value;
 
                 range.Style.WrapText = true;
-                range.Style.HorizontalAlignment = options.HorizontalAligment.ToEPPlusHorizontalAligment();
-                range.Style.VerticalAlignment = options.VerticalAligment.ToEPPlusVerticalAlignment();
+                range.Style.HorizontalAlignment = options.HorizontalAlignment.ToEPPlusHorizontalAligment();
+                range.Style.VerticalAlignment = options.VerticalAlignment.ToEPPlusVerticalAlignment();
 
                 // border
                 range.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
