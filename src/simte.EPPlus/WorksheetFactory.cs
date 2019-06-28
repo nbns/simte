@@ -11,6 +11,8 @@ namespace simte.EPPlus
     {
         private readonly IExcelPackage _package;
         protected internal readonly ExcelWorksheet ws;
+        
+        public int LastRow => ws.Dimension.End.Row;
 
         // ctor
         public WorksheetFactory(IExcelPackage package, ExcelWorksheet excelWorksheet)
@@ -62,7 +64,7 @@ namespace simte.EPPlus
 
             return this;
         }
-        
+
         public IRichTextBuilder RichText(Position pos)
         {
             throw new NotImplementedException();

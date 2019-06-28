@@ -10,5 +10,10 @@ namespace simte
         ITableBuilder Table(TableOptions options);
         IRichTextBuilder RichText(Position pos);
         IWorksheetFactory Text(string text, Position pos, Action<ColumnOptionsBuilder> action = null, double? rowHeight = null);
+        
+        /// <summary>
+        /// Indicates where the last action was
+        /// </summary>
+        int LastRow { get; }
     }
 }
