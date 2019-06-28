@@ -2,6 +2,8 @@
 using simte.EPPlus.Table;
 using simte.Table;
 using System;
+using System.Drawing;
+using System.IO;
 using simte.EPPlus.Table.Extensions;
 using simte.RichText;
 
@@ -69,6 +71,18 @@ namespace simte.EPPlus
         {
             throw new NotImplementedException();
         }
+        
+        public Position Picture(string name, Position pos, Stream stream) =>
+            Picture(name, pos, Image.FromStream(stream));
+
+        public Position Picture(string name, Position pos, Image image)
+            
+        {
+            var pic = ws.Drawings.AddPicture(name, image);
+            pic.SetPosition(pos.Row, 0, pos.Col - 1, 0);
+            
+            return new Position(pic.To.Row, pic.To.Column);
+        }        
         
         public IExcelPackage Attach()
             => _package;
