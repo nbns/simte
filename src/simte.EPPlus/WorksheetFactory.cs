@@ -4,6 +4,7 @@ using simte.Table;
 using System;
 using System.Drawing;
 using System.IO;
+using simte.EPPlus.Extensions;
 using simte.EPPlus.Table.Extensions;
 using simte.RichText;
 
@@ -13,7 +14,7 @@ namespace simte.EPPlus
     {
         private readonly IExcelPackage _package;
         protected internal readonly ExcelWorksheet ws;
-        
+
         public int LastRow => ws.Dimension.End.Row;
 
         // ctor
@@ -71,19 +72,39 @@ namespace simte.EPPlus
         {
             throw new NotImplementedException();
         }
-        
+
         public Position Picture(string name, Position pos, Stream stream) =>
             Picture(name, pos, Image.FromStream(stream));
 
         public Position Picture(string name, Position pos, Image image)
-            
         {
             var pic = ws.Drawings.AddPicture(name, image);
             pic.SetPosition(pos.Row, 0, pos.Col - 1, 0);
-            
+
             return new Position(pic.To.Row, pic.To.Column);
-        }        
-        
+        }
+
+        public Position Picture(string name, Position from, Position to, Image image)
+        {
+            var pic = ws.Drawings.AddPicture(name, image);
+            var size = GetPixelsSizeOfCellRange(from, to);
+            pic.SetSize(size.Width, size.Height);
+
+            return new Position(pic.To.Row, pic.To.Column);
+        }
+
+        public Size GetPixelsSizeOfCell(Position pos)
+        {
+            var cell = ws.Cells[pos.Row, pos.Col, pos.Row + 1, pos.Col + 1];
+            return new Size(cell.GetWidthInPixels(), cell.GetHeightInPixels());
+        }
+
+        public Size GetPixelsSizeOfCellRange(Position from, Position to)
+        {
+            var cell = ws.Cells[from.Row, from.Col, to.Row, to.Col];
+            return new Size(cell.GetWidthInPixels(), cell.GetHeightInPixels());
+        }
+
         public IExcelPackage Attach()
             => _package;
     }
