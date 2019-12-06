@@ -7,7 +7,9 @@ namespace simte.EPPlus
         private readonly ExcelPackage _package = new ExcelPackage();
 
         // ctor
-        public Package() { }
+        public Package()
+        {
+        }
 
         public IWorksheetFactory AddWorksheet(string nameSheet)
             => new WorksheetFactory(this, _package.Workbook.Worksheets.Add(nameSheet));
@@ -16,6 +18,11 @@ namespace simte.EPPlus
         {
             //package.Workbook.Calculate();
             //package.Workbook.FullCalcOnLoad = true;
+            _package.SaveAs(new System.IO.FileInfo(filename), password);
+        }
+
+        void IExcelPackage.Save(string filename)
+        {
             _package.SaveAs(new System.IO.FileInfo(filename));
         }
 
@@ -23,6 +30,6 @@ namespace simte.EPPlus
             => _package.GetAsByteArray(password);
 
         public void Dispose()
-            =>_package?.Dispose();
+            => _package?.Dispose();
     }
 }
