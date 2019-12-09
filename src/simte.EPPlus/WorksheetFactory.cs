@@ -79,7 +79,8 @@ namespace simte.EPPlus
         public Position Picture(string name, Position pos, Image image)
         {
             var pic = ws.Drawings.AddPicture(name, image);
-            pic.SetPosition(pos.Row, 0, pos.Col - 1, 0);
+            pic.From.Row = pos.Row - 1;
+            pic.From.Column = pos.Col - 1;
 
             return new Position(pic.To.Row, pic.To.Column);
         }
@@ -87,6 +88,12 @@ namespace simte.EPPlus
         public Position Picture(string name, Position from, Position to, Image image)
         {
             var pic = ws.Drawings.AddPicture(name, image);
+
+            pic.From.Row = from.Row - 1;
+            pic.From.Column = from.Col - 1;
+            pic.To.Row = to.Row - 1;
+            pic.To.Column = to.Col- 1;
+
             var size = GetPixelsSizeOfCellRange(from, to);
             pic.SetSize(size.Width, size.Height);
 

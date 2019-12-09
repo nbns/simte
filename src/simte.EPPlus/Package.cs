@@ -21,7 +21,7 @@ namespace simte.EPPlus
             _package.SaveAs(new System.IO.FileInfo(filename), password);
         }
 
-        void IExcelPackage.Save(string filename)
+        public void Save(string filename)
         {
             _package.SaveAs(new System.IO.FileInfo(filename));
         }

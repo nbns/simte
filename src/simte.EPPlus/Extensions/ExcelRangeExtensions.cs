@@ -18,14 +18,14 @@ namespace simte.EPPlus.Extensions
             var sum = 0.0;
             using (var graphics = Graphics.FromHwnd(IntPtr.Zero))
             {
-                for (var currentRow = range.Start.Row; currentRow < range.End.Row; ++currentRow)
+                for (var currentRow = range.Start.Row; currentRow <= range.End.Row; ++currentRow)
                 {
                     var dpiY = graphics.DpiY;
                     sum += (range.Worksheet.Row(currentRow).Height * (1 / 72.0) * dpiY);
                 }
             }
 
-            return (int) sum;
+            return (int) Math.Round(sum);
         }
 
         /// <summary>
@@ -35,12 +35,14 @@ namespace simte.EPPlus.Extensions
         /// <returns></returns>
         public static int GetWidthInPixels(this ExcelRange range)
         {
-            var columnWidth = Enumerable.Range(range.Start.Column, range.End.Column - range.Start.Column).Sum(x => range.Worksheet.Column(x).Width);
+            var columnWidth = Enumerable.Range(range.Start.Column, /*range.End.Column - range.Start.Column*/range.Columns)
+                .Sum(x => range.Worksheet.Column(x).Width);
+
             // https://stackoverflow.com/questions/50352133/epplus-position-image-in-a-cell
             var font = new Font(range.Style.Font.Name, range.Style.Font.Size, FontStyle.Regular);
             var pxBaseline = Math.Round(measureString("1234567890", font) / 10);
 
-            return (int) (columnWidth * pxBaseline);
+            return (int) Math.Round(columnWidth * pxBaseline);
         }
 
         private static float measureString(string s, Font font)

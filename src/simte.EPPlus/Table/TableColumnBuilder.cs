@@ -2,6 +2,8 @@
 using simte.Table;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using simte.EPPlus.Extensions;
 
 namespace simte.EPPlus.Table
 {
@@ -10,7 +12,7 @@ namespace simte.EPPlus.Table
         private readonly RowBuilder _rowBuilder;
 
         // ctor
-        public TableColumnBuilder(RowBuilder rowBuilder, ExcelWorksheet ws) 
+        public TableColumnBuilder(RowBuilder rowBuilder, ExcelWorksheet ws)
             : base(ws)
         {
             _rowBuilder = rowBuilder ?? throw new ArgumentNullException(nameof(rowBuilder));
@@ -27,6 +29,20 @@ namespace simte.EPPlus.Table
         public ITableColumnBuilder Column<T>(T? value, Action<ColumnOptionsBuilder> action) where T : struct
             => value.HasValue ? Column(value.Value, action) : Column("", action);
 
+        public ITableColumnBuilder Column(Image value, string name, Action<ColumnOptionsBuilder> action = null)
+        {
+            var columnOptionsBuilder = new ColumnOptionsBuilder();
+            action?.Invoke(columnOptionsBuilder);
+            ColumnOptions options = columnOptionsBuilder;
+
+            var pos = _rowBuilder.GetPositionForCurrentColumn(options.Colspan, options.Rowspan);
+
+            setExelImage(value, name, pos, options);
+            _rowBuilder.NextColumn(options.Colspan); // next column in the current row
+
+            return this;
+        }
+
         public ITableColumnBuilder Column<T>(T value, Action<ColumnOptionsBuilder> action)
         {
             var columnOptionsBuilder = new ColumnOptionsBuilder();
@@ -39,7 +55,7 @@ namespace simte.EPPlus.Table
             _rowBuilder.NextColumn(options.Colspan); // next column in the current row
             return this;
         }
-
+        
         public ITableColumnBuilder ColumnRange<T>(IEnumerable<T> values, Action<ColumnOptionsBuilder> action = null)
         {
             var columnOptionsBuilder = new ColumnOptionsBuilder();
@@ -53,9 +69,8 @@ namespace simte.EPPlus.Table
                 setExcelRange(val, pos, options);
                 _rowBuilder.NextColumn(options.Colspan); // next column in the current row
             }
+
             return this;
         }
-
     }
 }
-

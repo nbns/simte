@@ -4,6 +4,7 @@ using simte.EPPlus.Table.Extensions;
 using simte.Table;
 using System;
 using System.Drawing;
+using simte.EPPlus.Extensions;
 
 namespace simte.EPPlus.Table
 {
@@ -12,7 +13,7 @@ namespace simte.EPPlus.Table
         protected readonly ExcelWorksheet _ws;
 
         // ctor
-        public BaseColumnBuilder(ExcelWorksheet ws)
+        protected BaseColumnBuilder(ExcelWorksheet ws)
         {
             _ws = ws ?? throw new ArgumentNullException(nameof(ws));
         }
@@ -25,7 +26,8 @@ namespace simte.EPPlus.Table
             using (var range = _ws.Cells[pos.Row, pos.Col, pos.Row + options.Rowspan - 1, pos.Col + options.Colspan - 1])
             {
                 range.Merge = options.Colspan > 1 || options.Rowspan > 1;
-                if (!string.IsNullOrEmpty(options.Formula)) range.Formula = options.Formula; else range.Value = value;
+                if (!string.IsNullOrEmpty(options.Formula)) range.Formula = options.Formula;
+                else range.Value = value;
 
                 if (options.Width.HasValue)
                     _ws.Column(pos.Col).Width = options.Width.Value;
@@ -53,6 +55,21 @@ namespace simte.EPPlus.Table
             }
         }
 
+        protected void setExelImage(Image image, string name, Position pos, ColumnOptions options)
+        {
+
+            var cell = _ws.Cells[pos.Row, pos.Col, pos.Row + options.Rowspan - 1, pos.Col + options.Colspan - 1];
+            var size = new Size(cell.GetWidthInPixels(), cell.GetHeightInPixels());
+
+            var pic = _ws.Drawings.AddPicture(name, image);
+            pic.From.Row = pos.Row - 1;
+            pic.From.Column = pos.Col - 1;
+            pic.To.Row = pos.Row + options.Rowspan - 1;
+            pic.To.Column = pos.Col + options.Colspan - 1;
+            
+            pic.SetSize(size.Width, size.Height);
+        }
+
 
         private (double height, double width) measureText(string text, ExcelFont excelFont, int width)
         {
@@ -71,7 +88,7 @@ namespace simte.EPPlus.Table
                 drawFont = new Font(excelFont.Name, excelFont.Size);
 
 
-                width = (int)(width * 7.5) * text.Length;
+                width = (int) (width * 7.5) * text.Length;
                 // see how big the text will be
                 var size = drawGraphics.MeasureString(text, drawFont, width);
 
@@ -102,7 +119,6 @@ namespace simte.EPPlus.Table
                 drawBrush?.Dispose();
                 drawGraphics?.Dispose();
             }
-
         }
     }
 }
