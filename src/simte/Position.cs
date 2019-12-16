@@ -4,8 +4,8 @@ namespace simte
 {
     public struct Position
     {
-        public int Row { get; set; }
-        public int Col { get; set; }
+        public int Row { get; }
+        public int Col { get; }
 
         // ctor
         public Position(int row, int col)
@@ -22,7 +22,7 @@ namespace simte
             col = Col;
         }
 
-        public static implicit operator Position ((int, int) tuple2)
+        public static implicit operator Position((int, int) tuple2)
             => new Position(tuple2.Item1, tuple2.Item2);
     }
 }
