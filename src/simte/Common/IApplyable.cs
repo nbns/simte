@@ -1,6 +1,6 @@
 ﻿namespace simte.Common
 {
-    public interface IApplyable<T>
+    public interface IApplyable<out T>
     {
         T Apply();
     }
