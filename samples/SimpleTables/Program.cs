@@ -94,6 +94,15 @@ namespace SimpleTables
                         .Apply();
                 });
 
+                // apply horizontal alignment
+                worksheet.Table(new TableOptions() {TopLeft = (35, 2)})
+                    .AddRows(rowBuilder =>
+                        rowBuilder
+                            .Row.Column(1, opt => opt.Colspan(2).HorizontalAlignment(HorizontalAlignment.Left))
+                            .Row.Column(1, opt => opt.Colspan(2).HorizontalAlignment(HorizontalAlignment.Center))
+                            .Row.Column(1, opt => opt.Colspan(2).HorizontalAlignment(HorizontalAlignment.Right))
+                    );
+
                 package.Save("simple-tables.xlsx");
             }
         }

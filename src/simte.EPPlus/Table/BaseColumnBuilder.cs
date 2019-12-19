@@ -34,7 +34,7 @@ namespace simte.EPPlus.Table
 
                 range.Style.WrapText = true;
                 range.Style.HorizontalAlignment = options.HorizontalAlignment.ToEPPlusHorizontalAligment();
-                range.Style.VerticalAlignment = options.VerticalAlignment.ToEPPlusVerticalAlignment();
+                range.Style.VerticalAlignment = options.VerticalAlignment.ToEpPlusVerticalAlignment();
 
                 // border
                 range.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);

@@ -48,7 +48,7 @@ namespace simte.EPPlus
 
                 range.Style.WrapText = true;
                 range.Style.HorizontalAlignment = options.HorizontalAlignment.ToEPPlusHorizontalAligment();
-                range.Style.VerticalAlignment = options.VerticalAlignment.ToEPPlusVerticalAlignment();
+                range.Style.VerticalAlignment = options.VerticalAlignment.ToEpPlusVerticalAlignment();
 
                 range.Style.Font.Bold = options.FontBold;
                 range.Style.Font.Size = options.FontSize ?? 11;
