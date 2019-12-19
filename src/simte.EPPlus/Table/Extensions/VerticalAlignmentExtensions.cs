@@ -5,7 +5,7 @@ namespace simte.EPPlus.Table.Extensions
 {
     internal static class VerticalAlignmentExtensions
     {
-        public static ExcelVerticalAlignment ToEPPlusVerticalAlignment(this VerticalAlignment alignment)
+        public static ExcelVerticalAlignment ToEpPlusVerticalAlignment(this VerticalAlignment alignment)
             => (ExcelVerticalAlignment)(int)alignment;
     }
 }
